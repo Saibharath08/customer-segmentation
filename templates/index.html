@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Segmentation Project</title>
+    <style>
+        /* Basic page setup */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 50px;
+            text-align: center;
+        }
+
+        /* Centered card for the form */
+        .form-container {
+            background-color: white;
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* Styling the form fields */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Simple button with a hover effect */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Result display section */
+        .result-text {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dffff0;
+            border: 1px solid #3de08a;
+            color: #1e7b48;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Customer Segmentation Predictor</h1>
+    <p>Enter the customer financial details below to find their segment:</p>
+
+    <div class="form-container">
+        <form action="/predict" method="POST">
+            
+            <div class="form-group">
+                <label>Annual Income (k$):</label>
+                <input type="number" name="income" placeholder="e.g. 70" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Spending Score (1-100):</label>
+                <input type="number" name="spending" placeholder="e.g. 80" required>
+            </div>
+            
+            <button type="submit">Predict Cluster</button>
+            
+        </form>
+
+        {% if result %}
+            <div class="result-text">
+                The customer belongs to: <br> {{ result }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
